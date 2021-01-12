@@ -1,7 +1,7 @@
 niceqr
 ====
 
-Cool Looking QR Code library based on [![ZXing ("zebra crossing")]](https://github.com/zxing/zxing).
+Cool Looking QR Code library based on [ZXing ("zebra crossing")](https://github.com/zxing/zxing).
 Main features are:
 - Colored QR Codes
 - Rounded Borders
@@ -26,7 +26,7 @@ Usage Samples
 				.withCircularPositionals(false)
 				.build());
 ```
-[!alt](samples/sample1.png)
+![alt](samples/sample1.png)
 
 Add some border to increase readability
 ```		
@@ -43,7 +43,7 @@ Add some border to increase readability
 				.withCircularPositionals(false)
 				.build());
 ```
-[!alt](samples/sample2.png)
+![alt](samples/sample2.png)
 
 Round that border a bit
 ```
@@ -60,7 +60,7 @@ Round that border a bit
 				.withCircularPositionals(false)
 				.build());
 ```
-[!alt](samples/sample3.png)
+![alt](samples/sample3.png)
 
 Round positional elements
 ```		
@@ -77,7 +77,7 @@ Round positional elements
 				.withCircularPositionals(false)
 				.build());
 ```
-[!alt](samples/sample4.png)
+![alt](samples/sample4.png)
 
 Add some colors
 ```		
@@ -94,7 +94,7 @@ Add some colors
 				.withCircularPositionals(false)
 				.build());
 ```
-[!alt](samples/sample5.png)
+![alt](samples/sample5.png)
 
 Use circles as positional elements
 ```		
@@ -110,7 +110,7 @@ Use circles as positional elements
 				.withCircularPositionals(true)
 				.build());
 ```
-[!alt](samples/sample6.png)
+![alt](samples/sample6.png)
 
 Add a logo inside the QR Code
 ```		
@@ -128,7 +128,7 @@ Add a logo inside the QR Code
 				.withRelativeLogoSize(.249)
 				.build());
 ```
-[!alt](samples/sample7.png)
+![alt](samples/sample7.png)
 
 Warnings
 ---
