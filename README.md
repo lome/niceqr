@@ -15,11 +15,11 @@ Artifacts are hosted on Bintray Jcenter. To use them add JCenter repository to
 your pom.xml
 ```
 	<repositories>
-	  <repository>
-        <id>bintray-jcenter</id>
-        <name>bintray-jcenter</name>
-        <url>https://jcenter.bintray.com</url>
-      </repository>
+		<repository>
+			<id>bintray-jcenter</id>
+			<name>bintray-jcenter</name>
+			<url>https://jcenter.bintray.com</url>
+		</repository>
 	</repositories>
 ```
 
