@@ -161,6 +161,6 @@ Add a logo inside the QR Code
 
 Warnings
 ---
-This library and the generated codes is provided as-is.
-Please be sure to test the readability of generated QR Codes before distributing them.
+This library is provided as-is.
+Please make sure to test the readability of generated QR Codes before distributing them.
 
