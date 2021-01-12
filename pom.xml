@@ -4,7 +4,7 @@
 
     <groupId>org.lome</groupId>
     <artifactId>niceqr</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>0.1.0</version>
 
     <name>niceqr</name>
     <description>Add project description here</description>
@@ -34,4 +34,5 @@
             </plugin>
         </plugins>
     </build>
+
 </project>

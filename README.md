@@ -13,7 +13,7 @@ Usage Samples
 
 "Traditional" QR Code
 ```
-	QrEngine.buildQrCode(text, 
+		QrEngine.buildQrCode(text, 
 				new File("samples/sample1.png"),
 				QrConfiguration.builder()
 				.withSize(200)
