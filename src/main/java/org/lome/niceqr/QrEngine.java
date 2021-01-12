@@ -23,17 +23,19 @@ import com.google.zxing.WriterException;
 import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel;
 
 public class QrEngine {
-	
+
 	private static void validateConfiguration(QrConfiguration conf) throws InvalidConfigurationException {
 		if (conf == null) throw new QrConfiguration.InvalidConfigurationException("Configuration is null");
 		if (conf.getDarkColor() == null) throw new QrConfiguration.InvalidConfigurationException("Configuration darkColor is null");
 		if (conf.getLightColor() == null) throw new QrConfiguration.InvalidConfigurationException("Configuration lightColor is null");
+		if (conf.getPositionalsColor() == null) throw new QrConfiguration.InvalidConfigurationException("Configuration positionalsColor is null");
 		if (conf.getSize()%4 != 0) throw new QrConfiguration.InvalidConfigurationException("Configuration size must be multiple of 4");
 		if (conf.getRelativeBorderSize() > .1) throw new QrConfiguration.InvalidConfigurationException("Relative border too big, set it < .1");
 		if (conf.getRelativeLogoSize() > .25) throw new QrConfiguration.InvalidConfigurationException("Relative logo too big set it < .25");
+		if (conf.getRelativeBorderRound() > .25) throw new QrConfiguration.InvalidConfigurationException("Relative border round too big set it < .25");
 		return;
 	}
-	
+
 	public static void buildQrCode(String text, File outputFile, QrConfiguration conf) throws WriterException, IOException, InvalidConfigurationException {
 		BufferedImage img = buildQrCode(text, conf);
 		ImageIO.write(img, "png", outputFile);
@@ -46,12 +48,12 @@ public class QrEngine {
 		BufferedImage layered = layer(qrImage,null,conf);
 		return layered;
 	}
-	
+
 	public static void buildQrCodeWithLogo(String text, File logoImage, File outputFile, QrConfiguration conf) throws WriterException, IOException {
 		BufferedImage img = buildQrCodeWithLogo(text, ImageIO.read(logoImage), conf);
 		ImageIO.write(img, "png", outputFile);
 	}
-	
+
 	public static BufferedImage buildQrCodeWithLogo(String text, File logoImage, QrConfiguration conf) throws WriterException, IOException {
 		return buildQrCodeWithLogo(text, ImageIO.read(logoImage), conf);
 	}
@@ -76,9 +78,13 @@ public class QrEngine {
 
 		//Black border
 		graphics.setColor(conf.getDarkColor());
-		graphics.fillRect(0, 0, conf.getSize(), conf.getSize());
+		graphics.fillRoundRect(0, 0, conf.getSize(), conf.getSize(),
+				(int)(conf.getSize()*conf.getRelativeBorderRound()),
+				(int)(conf.getSize()*conf.getRelativeBorderRound()));
 		graphics.setColor(white);
-		graphics.fillRect(border/2, border/2, conf.getSize()-(border), conf.getSize()-(border));
+		graphics.fillRoundRect(border/2, border/2, conf.getSize()-(border), conf.getSize()-(border),
+				(int)((conf.getSize()-border)*conf.getRelativeBorderRound()),
+				(int)((conf.getSize()-border)*conf.getRelativeBorderRound()));
 
 		//Qr Data
 		graphics.drawImage(qrImage,border,border, null);
@@ -171,26 +177,36 @@ public class QrEngine {
 
 			//White External Circle
 			graphics.setColor(white);
-			graphics.fillArc(cx-2, cy-2, r+4, r+4, 0, 360);
+			drawPositional(graphics,cx-2, cy-2, r+4, r+4, conf);
 
 			//Black External Circle
 			graphics.setColor(conf.getDarkColor());
-			graphics.fillArc(cx, cy, r, r, 0, 360);
+			drawPositional(graphics,cx, cy, r, r, conf);
 
 			cx = cx +p.blackBorder;
 			cy = cy +p.blackBorder;
 			//White Internal Circle
 			graphics.setColor(white);
-			graphics.fillArc(cx, cy, wr, wr, 0, 360);
+			drawPositional(graphics,cx, cy, wr, wr, conf);
 
 			cx = cx +p.whiteBorder;
 			cy = cy +p.whiteBorder;
 			//Black Internal Circle
-			graphics.setColor(conf.getDarkColor());
-			graphics.fillArc(cx, cy, ir, ir, 0, 360);
+			graphics.setColor(conf.getPositionalsColor());
+			drawPositional(graphics,cx, cy, ir, ir, conf);
 		});
 
 		return image;		
+	}
+
+	private static void drawPositional(Graphics2D graphics,int x, int y,int width,int height, QrConfiguration conf) {
+		if (conf.isCircularPositionals()) {
+			graphics.fillArc(x, y, width, height, 0, 360);
+		}else {
+			graphics.fillRoundRect(x, y, width, height, 
+					(int)(width*conf.getRelativePositionalsRound()), 
+					(int)(height*conf.getRelativePositionalsRound()));
+		}
 	}
 
 }

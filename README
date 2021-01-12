@@ -1,0 +1,14 @@
+niceqr
+====
+
+Cool Looking QR Code library based on [![ZXing ("zebra crossing")]](https://github.com/zxing/zxing).
+Main features are:
+- Colored QR Codes
+- Rounded Borders
+- Rounded Positional Elements
+- Inside Logo
+
+# Usage Samples
+
+
+
