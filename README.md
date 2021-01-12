@@ -1,4 +1,4 @@
-niceqr
+NiceQR
 ====
 
 Cool Looking QR Code library based on [ZXing ("zebra crossing")](https://github.com/zxing/zxing).
@@ -8,7 +8,36 @@ Main features are:
 - Rounded Positional Elements
 - Inside Logo
 
-Usage Samples
+Usage
+---
+
+Artifacts are hosted on Bintray Jcenter. To use them add JCenter repository to 
+your pom.xml
+```
+	<repositories>
+	  <repository>
+        <id>bintray-jcenter</id>
+        <name>bintray-jcenter</name>
+        <url>https://jcenter.bintray.com</url>
+      </repository>
+	</repositories>
+```
+
+Then add NiceQR dependency
+
+```
+	</dependencies>
+	...
+		<dependency>
+		    <groupId>org.lome</groupId>
+		    <artifactId>niceqr</artifactId>
+		    <version>0.1.0</version>
+		</dependency>
+	...
+	</dependencies>
+```
+
+Samples
 ---
 
 "Traditional" QR Code
