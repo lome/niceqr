@@ -34,5 +34,12 @@
             </plugin>
         </plugins>
     </build>
+    
+    <distributionManagement>
+	  <repository>
+	      <id>bintray-repo-maven</id>
+	      <url>https://api.bintray.com/maven/lorenzo-melegari/lome/niceqr/;publish=1</url>
+	  </repository>
+	</distributionManagement>
 
 </project>
